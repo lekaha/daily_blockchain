@@ -1,12 +1,25 @@
 <template>
   <nav role="navigation" class="top-nav">
     <ul class="menu">
-      <li v-if="!/\/.*?\/.*/.test(route.path)" v-for="route in this.$router.options.routes">
-        <nuxt-link :to="{ name: route.name }">{{ route.name.charAt(0).toUpperCase() + route.name.slice(1) }}</nuxt-link>
+      <li v-if="!/\/.*?\/.*/.test(route.path) && route.name !== 'index'" v-for="route in this.$router.options.routes">
+        <!-- route.name.charAt(0).toUpperCase() + route.name.slice(1) -->
+        <nuxt-link :to="$i18n.path(route.name)">{{ $t('links.' + route.name) }}</nuxt-link>
       </li>
     </ul>
   </nav>
 </template>
+
+<script>
+export default {
+  data () {
+    // console.log(this.$router.options.routes[0].name)
+    // console.log(this.$i18n.path(this.$router.options.routes[0].name))
+    return {
+      // name: this.$router.options.routes[0].name
+    }
+  }
+}
+</script>
 
 <style>
 

@@ -69,6 +69,11 @@
     font-size: 2em;
   }
 
+  /* Categories section */
+  .categories-container {
+    background: #ffffff;
+  }
+
   /* Copy section */
   .body-container {
     background: #ffffff;

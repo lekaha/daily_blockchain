@@ -32,7 +32,12 @@
         </div>
       </div>
     </header>
-
+    <section class="categories-container">
+      <div class="items-bar wrapper">
+        <h2>Categories</h2>
+      </div>
+      <category-navigation :categories="categories"></category-navigation>
+    </section>
     <section class="body-container">
       <div class="items-bar wrapper">
         <h2>Recent articles</h2>
@@ -51,6 +56,7 @@
 import {createClient} from '~/plugins/contentful.js'
 import Navigation from '~/components/navigation.vue'
 import ArticlePreview from '~/components/article-preview.vue'
+import CategoryNavigation from '~/components/category-navigation.vue'
 
 const client = createClient()
 
@@ -64,18 +70,24 @@ export default {
       client.getEntries({
         'content_type': env.CTF_BLOG_POST_TYPE_ID,
         order: '-sys.createdAt'
+      }),
+      client.getEntries({
+        'content_type': env.CTF_CATEGORY_TYPE_ID,
+        order: '-sys.createdAt'
       })
-    ]).then(([bg, slogans, articles]) => {
+    ]).then(([bg, slogans, articles, categories]) => {
       return {
         bgUrl: bg.fields.file.url,
         slogan: slogans.items[0],
-        articles: articles.items.slice(0, 3)
+        articles: articles.items.slice(0, 3),
+        categories: categories.items
       }
     }).catch(console.error)
   },
   components: {
     Navigation,
-    ArticlePreview
+    ArticlePreview,
+    CategoryNavigation
   }
 }
 </script>

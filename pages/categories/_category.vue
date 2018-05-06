@@ -7,7 +7,7 @@
           <Navigation></Navigation>
         </div>
         <div class="page-info wrapper">
-          <h2>#{{ tag }}</h2>
+          <h2>#{{ category }}</h2>
         </div>
       </div>
     </header>
@@ -36,7 +36,7 @@ export default {
   asyncData ({ env, params }) {
     return client.getEntries({
       'content_type': env.CTF_BLOG_POST_TYPE_ID,
-      'fields.tags[in]': params.tag,
+      'fields.tags[in]': params.category,
       order: '-sys.createdAt'
     }).then(entries => {
       return {
