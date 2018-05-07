@@ -14,11 +14,11 @@
 
     <section class="body-container">
       <div class="items-bar wrapper">
-        <h2>All articles tagged #{{ tag }} ({{ articles.length }})</h2>
+        <h2>All articles tagged #{{ tag }} ({{ posts.length }})</h2>
       </div>
       <ul class="items-list wrapper">
-        <li class="item" v-for="article in articles">
-          <article-preview :article="article"></article-preview>
+        <li class="item" v-for="post in posts">
+          <article-preview :post="posts"></article-preview>
         </li>
       </ul>
     </section>
